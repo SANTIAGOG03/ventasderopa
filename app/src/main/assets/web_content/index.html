@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ECOTREND</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+<header class="header">
+<h1 class="logo">ECOTREND</h1>
+<nav class="nav">
+      <button id="btn-feed" class="nav-btn"><i class="fas fa-home"></i> Feed</button>
+      <button id="btn-subir" class="nav-btn"><i class="fas fa-upload"></i> Subir</button>
+      <button id="btn-carrito" class="nav-btn"><i class="fas fa-shopping-cart"></i> Carrito</button>
+    </nav>
+ 
+  </header>
+
+  <div id="menu-filtros" class="menu-filtros">
+      </div>
+
+  <main>
+    <section id="feed" class="section-container">
+      <h2>Explora las últimas tendencias</h2>
+      <div id="productos-feed" class="productos-container"></div>
+    </section>
+
+    <section id="productos" class="section-container" style="display: none;">
+      <h2>Subir Producto</h2>
+      <form id="form-subir" class="formulario">
+        <label for="nombrePrenda">Nombre de la prenda</label>
+        <input type="text" id="nombrePrenda" class="input-text" placeholder="Ej. Camisa Vintage" required>
+
+        <label for="precioPrenda">Precio</label>
+        <input type="number" id="precioPrenda" class="input-text" placeholder="$0.00" required>
+
+        <label for="descripcionPrenda">Descripción</label>
+        <textarea id="descripcionPrenda" class="input-textarea" placeholder="Escribe una breve descripción..." required></textarea>
+
+        <label>Selecciona una opción</label>
+        <div class="dropdown">
+          <button type="button" class="dropbtn">Subir imagen o tomar foto</button>
+          <div class="dropdown-content">
+            <label for="imagenPrenda" class="dropdown-option">Subir Imagen</label>
+            <input type="file" id="imagenPrenda" accept="image/*" hidden>
+            <button type="button" id="abrirCamara" class="dropdown-option">Tomar Foto</button>
+          </div>
+        </div>
+
+        <div class="camera-container" style="display: none;">
+          <video id="video" autoplay></video>
+          <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+          <div class="camera-buttons">
+            <button type="button" id="btn-tomar-foto" class="btn-camera"><i class="fas fa-camera"></i></button>
+            <button type="button" id="btn-cambiar-camara" class="btn-camera"><i class="fas fa-sync-alt"></i></button>
+          </div>
+        </div>
+        <img id="preview" style="display:none; width:100%; border-radius: 10px; margin-top: 10px;">
+
+        <button type="button" id="btn-subir-producto" class="btn-principal">Subir Producto</button>
+      </form>
+    </section>
+
+    <section id="carrito" class="section-container" style="display: none;">
+      <h2>Tu Carrito de Compras</h2>
+      <div class="carrito-contador">
+        <span id="carrito-cantidad" class="carrito-info">0</span>
+        <span id="carrito-total" class="carrito-info">$0</span>
+      </div>
+      <div id="carrito-items" class="carrito-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ecotrend - Todos los derechos reservados</p>
+  </footer>
+
+  <a href="https://wa.me/573232006662?text=Hola%2C%20necesito%20ayuda%20con%20la%20app" class="whatsapp-float" target="_blank" title="Soporte por WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" width="28" style="border-radius: 50%;">
+  </a>
+  <div id="modalImagen" class="modal-imagen">
+    <span id="cerrarModal" class="cerrar-modal">&times;</span>
+    <img id="imagenAmpliada" class="imagen-ampliada" src="" alt="Imagen ampliada">
+  </div>
+  
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAWNwkxLOzt7GlORLMlMbVrhaWKDTPYQCM",
+    authDomain: "appecotrend.firebaseapp.com",
+    projectId: "appecotrend",
+    storageBucket: "appecotrend.firebasestorage.app",
+    messagingSenderId: "409117264989",
+    appId: "1:409117264989:web:362f979816f531bcef51b4",
+    measurementId: "G-35E5TLHBHM"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+ const db = firebase.firestore();
+const storage = firebase.storage();
+</script>
+
+
+<script src="app.js"></script>
+</body>
+
+</html>
